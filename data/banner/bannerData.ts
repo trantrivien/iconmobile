@@ -9,7 +9,7 @@ export const bannerData = [
       link: "shop?category=iPhone",
     },
     {
-      title: "Phụ Kiện Apple Chính Hãng",
+      title: "Phụ Kiện Apple Chính Hãng ",
       description:
         "Từ AirPods, Apple Watch đến phụ kiện sạc nhanh – tất cả đều chính hãng Apple, đồng bộ hoàn hảo cùng iPhone của bạn. IconMobile giúp bạn nâng tầm trải nghiệm.",
       images: ["/images/banner/iphone2.png"],
