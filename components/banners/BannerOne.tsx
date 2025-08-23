@@ -19,7 +19,7 @@ const BannerOne = () => {
           <p className="text-white text-lg mt-4">
             Tại đây
           </p>
-          <Link href="/shop" className="flex items-center justify-center gap-2 mt-8 px-10 py-4 hover:ring-2 hover:ring-white hover:ring-opacity-50 text-lg font-semibold rounded-full bg-white text-purple-500 hover:bg-purple-500 hover:text-white transition duration-300 ease-in-out">
+          <Link href="/bang-gia" className="flex items-center justify-center gap-2 mt-8 px-10 py-4 hover:ring-2 hover:ring-white hover:ring-opacity-50 text-lg font-semibold rounded-full bg-white text-purple-500 hover:bg-purple-500 hover:text-white transition duration-300 ease-in-out">
             <ArrowRight className="mr-2" size={24} /> Xem ngay
           </Link>
         </div>

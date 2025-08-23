@@ -38,7 +38,7 @@ const HeaderOne = () => {
               <ThemeToggle />
             </div>
   
-            <Cart />
+            {/* <Cart /> */}
             <MobileHeader />
           </div>
         </div>

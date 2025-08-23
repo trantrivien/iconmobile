@@ -1,85 +1,72 @@
 "use client";
+import { useEffect, useState } from "react";
 
-import React, { useEffect, useState } from "react";
-
-type CellData = {
-  value: string;
-  backgroundColor?: string;
-  textColor?: string;
-};
+interface Cell {
+  text: string;
+  style: React.CSSProperties;
+}
 
 export default function IphonePriceTable() {
-  const [data, setData] = useState<CellData[][]>([]);
+  const [rows, setRows] = useState<Cell[][]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const SHEET_ID = "YOUR_SHEET_ID"; // thay bằng ID sheet
-      const API_KEY = "YOUR_API_KEY"; // thay bằng Google API key
+    const fetchSheet = async () => {
 
-      const res = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}?fields=sheets.data.rowData.values.formattedValue,sheets.data.rowData.values.userEnteredFormat.backgroundColor,sheets.data.rowData.values.userEnteredFormat.textFormat.foregroundColor&key=${API_KEY}`
-      );
-      const json = await res.json();
+      const SHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SHEET_ID;
+      const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}?includeGridData=true&key=${API_KEY}`;
 
-      const rows = json.sheets[0].data[0].rowData || [];
-      const tableData: CellData[][] = rows.map((row: any) =>
+      const res = await fetch(url);
+      const data = await res.json();
+
+      const rowData = data.sheets[0].data[0].rowData;
+      const parsed: Cell[][] = rowData.map((row: any) =>
         (row.values || []).map((cell: any) => {
-          const bg = cell.userEnteredFormat?.backgroundColor;
-          const fg = cell.userEnteredFormat?.textFormat?.foregroundColor;
+          const text = cell.formattedValue || "";
+          const fmt = cell.effectiveFormat || {};
+          const textFmt = fmt.textFormat || {};
+          const bg = fmt.backgroundColor || {};
+          const fg = textFmt.foregroundColor || {};
 
-          const backgroundColor = bg
-            ? `rgba(${Math.floor((bg.red || 0) * 255)},${Math.floor(
-                (bg.green || 0) * 255
-              )},${Math.floor((bg.blue || 0) * 255)},${bg.alpha || 1})`
-            : "#ffffff";
-
-          const textColor = fg
-            ? `rgba(${Math.floor((fg.red || 0) * 255)},${Math.floor(
-                (fg.green || 0) * 255
-              )},${Math.floor((fg.blue || 0) * 255)},${fg.alpha || 1})`
-            : "#000000";
-
-          return {
-            value: cell.formattedValue || "",
-            backgroundColor,
-            textColor,
+          const style: React.CSSProperties = {
+            backgroundColor: bg.red !== undefined ? `rgba(${(bg.red || 0) * 255}, ${(bg.green || 0) * 255}, ${(bg.blue || 0) * 255}, ${bg.alpha ?? 1})` : undefined,
+            color: fg.red !== undefined ? `rgba(${(fg.red || 0) * 255}, ${(fg.green || 0) * 255}, ${(fg.blue || 0) * 255}, ${fg.alpha ?? 1})` : undefined,
+            fontWeight: textFmt.bold ? "bold" : "normal",
+            fontStyle: textFmt.italic ? "italic" : "normal",
+            fontSize: textFmt.fontSize ? `${textFmt.fontSize}px` : "14px",
+            textDecoration: textFmt.strikethrough ? "line-through" : textFmt.underline ? "underline" : "none",
+            padding: "6px 12px",
+            border: "1px solid #ddd",
           };
+
+          return { text, style };
         })
       );
 
-      setData(tableData);
+      setRows(parsed);
     };
 
-    fetchData();
+    fetchSheet();
   }, []);
 
   return (
-    <div className="w-full p-6">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Báo giá iPhone tại iConMobile
-      </h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300 text-center">
-          <tbody>
-            {data?.map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {row.map((cell, cellIndex) => (
-                  <td
-                    key={cellIndex}
-                    className="px-4 py-2 border border-gray-300"
-                    style={{
-                      backgroundColor: cell.backgroundColor,
-                      color: cell.textColor,
-                    }}
-                  >
-                    {cell.value}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-4 text-center">📱 Báo giá iPhone tại iConMobile</h2>
+      <table className="border-collapse w-full text-center max-w-screen-xl m-auto">
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, j) => (
+                <td key={j} style={cell.style}>
+                  {cell.text}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+     
     </div>
   );
 }
