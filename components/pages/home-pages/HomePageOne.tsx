@@ -12,12 +12,14 @@ import Loader from "@/components/others/Loader";
 const HomePageOne = () => {
   return (
     <section className="overflow-hidden">
-      <HeroBannerOne />
-      <BenefitsSection textCenter={true} />
-      <BannerOne />
+      {/* <HeroBannerOne /> */}
+      {/* <BannerOne /> */}
+      <img src="https://cdnv2.tgdd.vn/mwg-static/topzone/Banner/ea/94/ea94d44864f18fa4831425d2836ccb92.png" alt="" />
 
       <ProductsCollectionOne />
+      <BenefitsSection textCenter={true} />
       <TestimonialsSection textCenter={true} />
+
     
     </section>
   );

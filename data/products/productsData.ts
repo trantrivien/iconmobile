@@ -1,8 +1,8 @@
 export const productsData = [
   {
     id: 1,
-    name: "iPhone 11",
-    category: "Smartphones",
+    name: "iPhone Quốc Tế",
+    category: "Bảng giá",
     description:
       "iPhone 11 với thiết kế hiện đại, hiệu năng mạnh mẽ và camera kép chất lượng cao, mang lại trải nghiệm mượt mà trong công việc và giải trí.",
     aboutItem: [
@@ -18,12 +18,12 @@ export const productsData = [
     reviews: [],
     brand: "Apple",
     color: ["trắng", "đen", "đỏ", "xanh lá", "vàng", "tím"],
-    images: ["/images/products/iphone11.webp"],
+    images: ["/images/products/iphone-17-pro-max.jpg"],
   },
   {
     id: 2,
-    name: "iPhone 12",
-    category: "Smartphones",
+    name: "iPhone Lock",
+    category: "Bảng giá",
     description:
       "iPhone 12 với thiết kế vuông vức sang trọng, chip A14 Bionic và màn hình Super Retina XDR OLED mang lại trải nghiệm hình ảnh tuyệt đẹp.",
     aboutItem: [
@@ -39,12 +39,12 @@ export const productsData = [
     reviews: [],
     brand: "Apple",
     color: ["trắng", "đen", "xanh dương", "đỏ", "xanh lá"],
-    images: ["/images/products/iphone12.webp"],
+    images: ["/images/products/iphone-16-pro.jpg"],
   },
   {
     id: 3,
-    name: "iPhone 13",
-    category: "Smartphones",
+    name: "iPhone Quốc Tế Mỗi Ngày",
+    category: "Group FB Sale",
     description:
       "iPhone 13 nổi bật với camera cải tiến, pin lâu hơn và chip A15 Bionic mạnh mẽ, mang lại trải nghiệm vượt trội.",
     aboutItem: [
@@ -64,8 +64,8 @@ export const productsData = [
   },
   {
     id: 4,
-    name: "iPhone 15 Ultra",
-    category: "Smartphones",
+    name: "iPhone Lock Mỗi Ngày",
+    category: "Group Zalo Sale",
     description:
       "iPhone 15 Ultra với thiết kế titan siêu bền, camera đột phá và chip A17 Pro mang lại hiệu năng hàng đầu thế giới.",
     aboutItem: [
@@ -83,25 +83,5 @@ export const productsData = [
     color: ["đen", "trắng", "xanh", "titan tự nhiên"],
     images: ["/images/products/iphone-15-ultra.png"],
   },
-  {
-    id: 5,
-    name: "iPhone 16 Pro",
-    category: "Smartphones",
-    description:
-      "iPhone 16 Pro là thế hệ mới nhất với công nghệ tiên tiến, màn hình lớn hơn, hiệu năng vượt trội và hệ thống camera chuyên nghiệp.",
-    aboutItem: [
-      "Màn hình Super Retina XDR ProMotion lớn hơn",
-      "Chip A18 Pro siêu nhanh",
-      "Hệ thống camera chuyên nghiệp cải tiến",
-      "Pin lâu hơn và hỗ trợ sạc nhanh hơn"
-    ],
-    price: 0,
-    discount: 0,
-    rating: 5.0,
-    stockItems: 5,
-    reviews: [],
-    brand: "Apple",
-    color: ["đen", "trắng", "xanh", "titan"],
-    images: ["/images/products/iphone-16-pro.png"],
-  },
+  
 ];

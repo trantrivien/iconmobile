@@ -48,10 +48,13 @@ export default function IphonePriceTable() {
 
     fetchSheet();
   }, []);
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-GB');
+
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">📱 Báo giá iPhone tại iConMobile</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">{`📱 Báo giá iPhone 17 Pro tại iConMobile Ngày ${formattedDate}`}</h2>
       <table className="border-collapse w-full text-center max-w-screen-xl m-auto">
         <tbody>
           {rows.map((row, i) => (

@@ -4,7 +4,7 @@ export const bannerData = [
       description:
         "Khám phá hiệu năng vượt trội với chip A17 Pro, thiết kế titan siêu bền và camera Tele 5x độc quyền. Chỉ có tại IconMobile – nơi chuyên iPhone chính hãng giá tốt nhất.",
       images: ["/images/banner/iphone1.png"],
-      button: "Mua Ngay",
+      button: "Xem Ngay",
       discountText: "Đặt trước hôm nay – Giảm ngay 5%",
       link: "shop?category=iPhone",
     },

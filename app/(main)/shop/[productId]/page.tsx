@@ -32,14 +32,21 @@ const ProductIdPage = ({ params }: ProductIdPageProps) => {
       <div className="my-2">
         <BreadcrumbComponent links={["/shop"]} pageText={product?.name!} />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8">
-        {/* Product Gallery */}
-        <ProductGallery isInModal={false} images={product?.images!} />
-        {/* product details */}
-        <ProductDetails product={product!}/>
+
+      <div className=" grid grid-cols-4">
+        <div className="w-full h-[200px]">
+          <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone-17-pro-256-gb.png" alt="" />
+          <h6 className="text-[20px] font-bold">Iphone 17 Pro</h6>
+          <div className="flex w-ful gap-2">
+            <p>Màu: </p>
+            <div className="w-[20px] h-[20px] rounded-full bg-[#e9e9e9]" ></div>
+            <div className="w-[20px] h-[20px] rounded-full bg-[#ff2222]" ></div>
+            <div className="w-[20px] h-[20px] rounded-full bg-[#ff6021]" ></div>
+          </div>
+        </div>
+
       </div>
-      {/* Related Products */}
-      <RelatedProducts products={relatedProducts} />
+     
     </div>
   );
 };

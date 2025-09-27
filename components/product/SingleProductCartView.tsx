@@ -44,15 +44,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
       <div className={`w-full bg-gray-200 overflow-hidden`}>
         <div className="relative w-full h-[18rem] group-hover:scale-110 transition-all duration-300 rounded-md overflow-hidden">
           <Image className="object-contain" src={images[0]} alt={name} fill />
-          {stockItems === 0 ? (
-            <p className="py-1 px-4 text-sm font-bold rounded-sm bg-rose-500 text-white absolute top-2 right-2">
-              out of stock
-            </p>
-          ) : (
-            <p className="py-1 px-4 text-sm font-bold rounded-sm bg-rose-500 text-white absolute top-2 right-2">
-              {product.discount}% off
-            </p>
-          )}
+     
         </div>
       </div>
       <div className="hidden group-hover:block slideCartOptions absolute top-16 right-2">
@@ -64,18 +56,17 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
             e.preventDefault();
             router.push(`shop?category=${category}`);
           }}
-          className="text-sm text-sky-500 font-light -mb-1 hover:opacity-60 "
+          className="text-lg font-bold text-sky-500 -mb-1 hover:opacity-60 "
         >
           {" "}
           {category}
         </p>
-        <h3 className="text-xl font-fold capitalize hover:text-green-500">
+        <h3 className="text-xl font-fold capitalize hover:text-green-500 font-bold">
           {name.slice(0, 45)}
           {name.length > 45 && "..."}
         </h3>
-        <RatingReview rating={rating} review={reviews.length} />
-        <div className="text-lg font-bold space-x-3 ">
-          <span className=" text-red-600 text-muted-foreground">Liên hệ</span>
+        <div className="text-lg font-bold space-x-3 bg-[#c9c9c9] w-fit px-4 py-2 rounded-full">
+          <span className=" text-[#ff2929] text-muted-foreground">Xem ngay</span>
           {/* <span className="text-xl font-bold text-green-500">
             ${discountedPrice.toFixed(2)}
           </span> */}
