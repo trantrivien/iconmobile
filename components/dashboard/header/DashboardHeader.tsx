@@ -1,9 +1,6 @@
 import Logo from "@/components/logo/Logo";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { Bell, LogOut } from "lucide-react";
-import React from "react";
-import Notification from "../notificaton/Notification";
+import { LogOut } from "lucide-react";
 import DashboardMobileHeader from "./DashboardMobileHeader";
 
 const DashboardHeader = () => {
@@ -12,8 +9,6 @@ const DashboardHeader = () => {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <Logo />
         <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <Notification />
           <Button
             size={"sm"}
             variant={"destructive"}

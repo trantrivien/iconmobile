@@ -42,7 +42,7 @@ const ProductsCollectionOne = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
             {data?.slice(0, 8)?.map((product) => {
               return (
-                <SingleProductCartView key={product.id} product={product} />
+                <SingleProductCartView key={product.id} product={product } />
               );
             })}
           </div>

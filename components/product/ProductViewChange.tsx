@@ -73,9 +73,7 @@ const ProductViewChange = ({
           </Tooltip>
         </TooltipProvider>
       </div>
-      <div className="">
-        <FilterProductsBtn />
-      </div>
+     
     </div>
   );
 };

@@ -1,26 +1,24 @@
-import React, { Suspense } from "react";
-import HeroBannerOne from "@/components/hero/HeroBannerOne";
-import ProductsCollectionOne from "@/components/products/ProductsCollectionOne";
-import NewsLetterTwo from "@/components/newsLetter/NewsLetterTwo";
-import LatestBlogPosts from "@/components/blog/LatestBlogPosts";
-import CategoriesCollection from "@/components/category/CategoriesCollection";
-import TestimonialsSection from "@/components/others/Testimonials";
-import BannerOne from "@/components/banners/BannerOne";
 import BenefitsSection from "@/components/others/BenefitSection";
-import Loader from "@/components/others/Loader";
+import TestimonialsSection from "@/components/others/Testimonials";
+import ProductsCollectionOne from "@/components/products/ProductsCollectionOne";
+import Image from "next/image";
 
 const HomePageOne = () => {
   return (
     <section className="overflow-hidden">
-      {/* <HeroBannerOne /> */}
-      {/* <BannerOne /> */}
-      <img src="https://cdnv2.tgdd.vn/mwg-static/topzone/Banner/ea/94/ea94d44864f18fa4831425d2836ccb92.png" alt="" />
+      <div className="relative w-full h-[500px] overflow-hidden">
+        <Image
+          src="https://cdnv2.tgdd.vn/mwg-static/topzone/Banner/ea/94/ea94d44864f18fa4831425d2836ccb92.png"
+          alt="Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
       <ProductsCollectionOne />
       <BenefitsSection textCenter={true} />
       <TestimonialsSection textCenter={true} />
-
-    
     </section>
   );
 };

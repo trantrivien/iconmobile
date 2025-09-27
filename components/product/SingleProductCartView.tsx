@@ -8,7 +8,7 @@ import { Product } from "@/types";
 import { calculateDiscount } from "@/lib/calculateDiscount";
 import { useRouter } from "next/navigation";
 
-const SingleProductCartView = ({ product }: { product: Product }) => {
+const SingleProductCartView = ({ product }: { product: any }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const router = useRouter();
@@ -17,6 +17,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
     category,
     discount,
     id,
+    slug,
     images,
     name,
     price,
@@ -38,7 +39,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
 
   return (
     <Link
-      href={`/shop/${id}`}
+      href={`/cua-hang/${slug}`}
       className="relative border rounded-xl shadow-lg overflow-hidden group"
     >
       <div className={`w-full bg-gray-200 overflow-hidden`}>
@@ -52,10 +53,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
       </div>
       <div className="my-2 space-y-1 p-4">
         <p
-          onClick={(e) => {
-            e.preventDefault();
-            router.push(`shop?category=${category}`);
-          }}
+         
           className="text-lg font-bold text-sky-500 -mb-1 hover:opacity-60 "
         >
           {" "}
@@ -67,9 +65,7 @@ const SingleProductCartView = ({ product }: { product: Product }) => {
         </h3>
         <div className="text-lg font-bold space-x-3 bg-[#c9c9c9] w-fit px-4 py-2 rounded-full">
           <span className=" text-[#ff2929] text-muted-foreground">Xem ngay</span>
-          {/* <span className="text-xl font-bold text-green-500">
-            ${discountedPrice.toFixed(2)}
-          </span> */}
+  
         </div>
       </div>
     </Link>

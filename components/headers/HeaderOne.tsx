@@ -1,25 +1,37 @@
 "use client";
-import React, { Suspense } from "react";
-import Logo from "../logo/Logo";
-import Link from "next/link";
-import SearchBox from "./SearchBox";
-import Cart from "../carts/Cart";
-import { ThemeToggle } from "../theme/ThemeToggle";
-import AccountPopover from "../account/AccountPopover";
-import {  Search } from "lucide-react";
-import MobileHeader from "./MobileHeader";
-import { Separator } from "../ui/separator";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { useMobileSearchModal } from "@/store/mobileSearchStore";
-import Loader from "../others/Loader";
-import DropdownMenuComponent from "../others/DropdownMenu";
+import { Store } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Logo from "../logo/Logo";
+import { Separator } from "../ui/separator";
+import MobileHeader from "./MobileHeader";
+import Link from "next/link";
 
 const HeaderOne = () => {
   const pathname = usePathname();
 
-  const links = [
-
+  const navlinks = [
+    {
+      link: "/",
+      label: "Trang Chủ",
+      isActive: pathname === "/",
+    },
+    {
+      link: "/cua-hang",
+      label: "Cửa hàng",
+      icon: <Store />,
+      isActive: pathname.includes("/cua-hang"),
+    },
+    {
+      link: "/cua-hang/iphone-quoc-te",
+      label: "iPhone Quốc Tế",
+      isActive: pathname.includes("/cua-hang/iphone-quoc-te"),
+    },
+    {
+      link: "/cua-hang/iphone-lock",
+      label: "iPhone Lock",
+      isActive: pathname.includes("/cua-hang/iphone-lock"),
+    },
   ];
 
   const { openModal } = useMobileSearchModal();
@@ -30,15 +42,12 @@ const HeaderOne = () => {
         <Logo />
 
         <div className="flex items-center gap-6 ">
-          {/* mobile search option */}
- 
-
+          {navlinks.map((link: any) => (
+            <Link key={link.link} className=" text-lg font-medium" href={link.link}>
+              {link.label}
+            </Link>
+          ))}
           <div className="flex items-center gap-6 lg:gap-2 lg:-mt-1">
-            <div className="hidden lg:block">
-              <ThemeToggle />
-            </div>
-  
-            {/* <Cart /> */}
             <MobileHeader />
           </div>
         </div>

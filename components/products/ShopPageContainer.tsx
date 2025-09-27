@@ -63,7 +63,7 @@ const ShopPageContainer = ({
 
     // Apply other filters...
 
-    return filteredProducts;
+    return filteredProducts as any;
   };
 
   // Update filtered data whenever search params change
@@ -116,7 +116,7 @@ const ShopPageContainer = ({
   }
 
   return (
-    <div className="md:ml-4 p-2 md:p-0">
+    <div className="md:ml-4 p-2 md:p-0 mx-auto">
       {/* product status and filter options */}
       <ProductViewChange
         listView={listView}

@@ -1,6 +1,8 @@
 export const productsData = [
   {
     id: 1,
+    slug: "iphone-quoc-te",
+    sheetId: "",
     name: "iPhone Quốc Tế",
     category: "Bảng giá",
     description:
@@ -9,7 +11,7 @@ export const productsData = [
       "Màn hình Liquid Retina HD 6.1 inch sắc nét",
       "Chip A13 Bionic mạnh mẽ",
       "Hệ thống camera kép 12MP chụp đêm, chụp góc rộng",
-      "Face ID bảo mật nhanh chóng và an toàn"
+      "Face ID bảo mật nhanh chóng và an toàn",
     ],
     price: 0,
     discount: 0,
@@ -21,7 +23,9 @@ export const productsData = [
     images: ["/images/products/iphone-17-pro-max.jpg"],
   },
   {
+    slug: "iphone-lock",
     id: 2,
+    sheetId: "",
     name: "iPhone Lock",
     category: "Bảng giá",
     description:
@@ -30,7 +34,7 @@ export const productsData = [
       "Màn hình Super Retina XDR 6.1 inch",
       "Chip A14 Bionic cực nhanh",
       "Camera kép 12MP với chế độ ban đêm",
-      "Hỗ trợ 5G tốc độ cao"
+      "Hỗ trợ 5G tốc độ cao",
     ],
     price: 0,
     discount: 0,
@@ -44,6 +48,7 @@ export const productsData = [
   {
     id: 3,
     name: "iPhone Quốc Tế Mỗi Ngày",
+    slug: "",
     category: "Group FB Sale",
     description:
       "iPhone 13 nổi bật với camera cải tiến, pin lâu hơn và chip A15 Bionic mạnh mẽ, mang lại trải nghiệm vượt trội.",
@@ -51,7 +56,7 @@ export const productsData = [
       "Màn hình Super Retina XDR OLED 6.1 inch",
       "Chip A15 Bionic hiệu năng cao",
       "Camera kép 12MP với chống rung cảm biến",
-      "Pin lâu hơn so với thế hệ trước"
+      "Pin lâu hơn so với thế hệ trước",
     ],
     price: 0,
     discount: 0,
@@ -66,13 +71,14 @@ export const productsData = [
     id: 4,
     name: "iPhone Lock Mỗi Ngày",
     category: "Group Zalo Sale",
+    slug: "",
     description:
       "iPhone 15 Ultra với thiết kế titan siêu bền, camera đột phá và chip A17 Pro mang lại hiệu năng hàng đầu thế giới.",
     aboutItem: [
       "Khung viền titan siêu nhẹ và chắc chắn",
       "Chip A17 Pro mạnh mẽ cho hiệu năng vượt trội",
       "Camera tele 5x (chỉ có trên bản Ultra)",
-      "USB-C hỗ trợ tốc độ truyền dữ liệu cao"
+      "USB-C hỗ trợ tốc độ truyền dữ liệu cao",
     ],
     price: 0,
     discount: 0,
@@ -83,5 +89,4 @@ export const productsData = [
     color: ["đen", "trắng", "xanh", "titan tự nhiên"],
     images: ["/images/products/iphone-15-ultra.png"],
   },
-  
 ];

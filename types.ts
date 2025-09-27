@@ -1,6 +1,8 @@
 // change or modify the types as your requirement
 
 export type Product = {
+  slug: string,
+  sheetId: string,
   id: number;
   name: string;
   category: string;
