@@ -86,6 +86,8 @@ async function fetchSheetTitles(sheetId: string): Promise<string[]> {
   return (data.sheets ?? []).map((s: any) => s.properties.title as string);
 }
 
+
+
 const ProductIdPage = async ({ params }: ProductIdPageProps) => {
   const sheetId = getSheetIDBySlug(params?.productId);
   const product = productsData.find(
@@ -104,7 +106,7 @@ const ProductIdPage = async ({ params }: ProductIdPageProps) => {
       <div className=" grid md:grid-cols-4 grid-cols-1 w-full gap-4">
         {listIphone?.map((phone, idx) => (
           <Product
-          key={idx}
+            key={idx}
             phone={phone}
             slug={product?.slug}
             apiKey={API_KEY as string}

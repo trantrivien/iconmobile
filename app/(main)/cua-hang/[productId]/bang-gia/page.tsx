@@ -75,7 +75,7 @@ export default async function Page({
 }) {
   const productId = params.productId;
   const sheetTitle = searchParams.iphone;
-  const range = "A10:D100";
+  const range = "A10:E100";
 
   const sheetId = getSheetIDBySlug(productId);
 

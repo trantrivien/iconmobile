@@ -52,7 +52,8 @@ function Product({ phone, slug, apiKey, sheetId }: IProductProps) {
 
   return (
     <Link
-      href={`/cua-hang/${slug}/bang-gia?iphone=${phone}`}
+      href={slug?.includes('http') ? slug : `/cua-hang/${slug}/bang-gia?iphone=${phone}`}
+      target={slug?.includes('http') ? '_blank' : '_self'}
       className="relative border rounded-xl shadow-lg overflow-hidden group"
     >
       <div className={`w-full bg-gray-200 overflow-hidden  `}>
@@ -85,11 +86,10 @@ function Product({ phone, slug, apiKey, sheetId }: IProductProps) {
                 e.stopPropagation();
                 setCurrentVariant({ image: v.image, color: v.color });
               }}
-              className={`w-7 h-7 rounded-full border cursor-pointer ${
-                currentVariant?.color === v.color
-                  ? "border-2 border-spacing-3 border-red-600"
-                  : ""
-              } `}
+              className={`w-7 h-7 rounded-full border cursor-pointer ${currentVariant?.color === v.color
+                ? "border-2 border-spacing-3 border-red-600"
+                : ""
+                } `}
               style={{ backgroundColor: v.color }}
               title={v.color}
             />

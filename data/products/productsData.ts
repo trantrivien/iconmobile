@@ -48,7 +48,7 @@ export const productsData = [
   {
     id: 3,
     name: "iPhone Quốc Tế Mỗi Ngày",
-    slug: "",
+    slug: "https://m.me/ch/Abb6TSeyTaJkk_VN/",
     category: "Group FB Sale",
     description:
       "iPhone 13 nổi bật với camera cải tiến, pin lâu hơn và chip A15 Bionic mạnh mẽ, mang lại trải nghiệm vượt trội.",
@@ -71,7 +71,7 @@ export const productsData = [
     id: 4,
     name: "iPhone Lock Mỗi Ngày",
     category: "Group Zalo Sale",
-    slug: "",
+    slug: "https://zalo.me/g/xriboh677",
     description:
       "iPhone 15 Ultra với thiết kế titan siêu bền, camera đột phá và chip A17 Pro mang lại hiệu năng hàng đầu thế giới.",
     aboutItem: [
