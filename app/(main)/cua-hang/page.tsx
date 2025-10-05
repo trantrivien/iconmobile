@@ -1,9 +1,10 @@
-import HomePageOne from "@/components/pages/home-pages/HomePageOne";
-import HomePageTwo from "@/components/pages/home-pages/HomePageTwo";
+import ShopPageOne from "@/components/pages/shop-pages/ShopPageOne";
+import { SearchParams } from "@/types";
 import { Metadata } from "next";
 
+
 export const metadata: Metadata = {
-  title: "iConMobile - Chuyên bán iPhone",
+  title: "iConMobile - Cửa Hàng",
   description:
     "iConMobile - Chuyên bán iPhone trả góp, uy tín số 1 Việt Nam - Bảng giá iPhone cập nhật hằng ngày.",
   keywords: [
@@ -65,12 +66,12 @@ export const metadata: Metadata = {
     "iPhone khuyến mãi HCM",
   ],
 };
-export default  function Home() {
-
-
+function ShopPage({ searchParams }: { searchParams: SearchParams }) {
   return (
-    <main>
-      <HomePageOne />
-    </main>
+    <div>
+      <ShopPageOne searchParams={searchParams} />
+    </div>
   );
 }
+
+export default ShopPage;

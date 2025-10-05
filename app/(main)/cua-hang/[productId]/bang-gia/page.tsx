@@ -1,20 +1,21 @@
-import HomePageOne from "@/components/pages/home-pages/HomePageOne";
-import HomePageTwo from "@/components/pages/home-pages/HomePageTwo";
+import IphonePriceTable from "@/components/IphonePriceTable/IphonePriceTable";
+import BenefitsSection from "@/components/others/BenefitSection";
+import BreadcrumbComponent from "@/components/others/Breadcrumb";
+import { getSheetIDBySlug } from "@/lib/utils";
 import { Metadata } from "next";
+import React from "react";
 
 export const metadata: Metadata = {
-  title: "iConMobile - Chuyên bán iPhone",
+  title: "iConMobile - Bảng Giá IPhone",
   description:
     "iConMobile - Chuyên bán iPhone trả góp, uy tín số 1 Việt Nam - Bảng giá iPhone cập nhật hằng ngày.",
   keywords: [
-    // Địa điểm chung
     "iPhone Hồ Chí Minh",
     "iPhone HCM",
     "iPhone TP.HCM",
     "mua iPhone Hồ Chí Minh",
     "iPhone trả góp Hồ Chí Minh",
 
-    // Các quận trọng điểm
     "iPhone Gò Vấp",
     "iPhone Quận 1",
     "iPhone Quận 3",
@@ -32,7 +33,6 @@ export const metadata: Metadata = {
     "iPhone Hóc Môn",
     "iPhone Củ Chi",
 
-    // Sản phẩm theo dòng máy
     "iPhone trả góp",
     "iPhone giá rẻ",
     "bảng giá iPhone",
@@ -65,12 +65,36 @@ export const metadata: Metadata = {
     "iPhone khuyến mãi HCM",
   ],
 };
-export default  function Home() {
 
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { productId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const productId = params.productId;
+  const sheetTitle = searchParams.iphone;
+  const range = "A10:E100";
 
+  const sheetId = getSheetIDBySlug(productId);
+
+  const API_KEY = process.env.GOOGLE_API_KEY;
+  const url =
+    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?` +
+    `includeGridData=true&` +
+    `ranges=${encodeURIComponent(`${sheetTitle}!${range}`)}&` +
+    `key=${API_KEY}`;
+  const res = await fetch(url);
+  const data = await res.json();
   return (
-    <main>
-      <HomePageOne />
-    </main>
+    <div>
+      <BenefitsSection textCenter={true} />
+      <IphonePriceTable
+        data={data}
+        productId={productId}
+        sheetTitle={sheetTitle ?? ""}
+      />
+    </div>
   );
 }

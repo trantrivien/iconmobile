@@ -8,12 +8,12 @@ const BenefitsSection = ({ textCenter }: { textCenter: boolean }) => {
         {!textCenter ? (
           <div className="flex flex-wrap items-center justify-center md:justify-between mb-12">
             <h2 className="text-3xl md:text-5xl !text-center md:text-start font-bold text-gray-900 dark:text-white border-l-0 p-2 border-l-rose-500">
-              Ưu Đãi Khi Mua Hàng Tại iConMobile
+              Chính Sách Mua Hàng Tại iCon Mobile
             </h2>
           </div>
         ) : (
           <h2 className="text-3xl md:text-5xl font-bold text-start md:text-center text-gray-900 dark:text-white mb-12 border-l-0 border-l-rose-500 w-fit mx-auto p-2">
-            Ưu Đãi Khi Mua Hàng Tại iConMobile
+            Chính Sách Mua Hàng Tại iCon Mobile
           </h2>
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -50,7 +50,7 @@ const BenefitsSection = ({ textCenter }: { textCenter: boolean }) => {
               Bảo Hành 1 Đổi 1
             </h3>
             <p className="text-gray-700 dark:text-gray-300 text-center">
-              Cam kết bảo hành chính hãng Apple, lỗi đổi máy mới trong 12 tháng.
+              Bảo hành 1 đổi 1 trong 30 ngày, bảo hành tất cả lỗi do nhà sản suất lên đến 24 tháng.
             </p>
           </div>
         </div>
