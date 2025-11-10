@@ -41,12 +41,15 @@ const HeaderOne = () => {
       <div className="max-w-screen-xl mx-auto  p-4 md:py-4 md:px-8 flex items-center justify-between gap-2">
         <Logo />
 
-        <div className="flex items-center gap-6 ">
-          {navlinks.map((link: any) => (
-            <Link key={link.link} className=" text-lg font-medium" href={link.link}>
-              {link.label}
-            </Link>
-          ))}
+        <div className="lg:flex items-center gap-6   ">
+          <div className="lg:flex items-center hidden gap-6">
+            {navlinks.map((link: any) => (
+              <Link key={link.link} className=" text-lg font-medium" href={link.link}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
           <div className="flex items-center gap-6 lg:gap-2 lg:-mt-1">
             <MobileHeader />
           </div>
