@@ -28,7 +28,6 @@ import { usePathname } from "next/navigation";
 const MobileHeader = () => {
   const pathname = usePathname();
 
-
   const navlinks = [
     {
       link: "/",
@@ -69,6 +68,7 @@ const MobileHeader = () => {
                 {/* navigation links here */}
                 {navlinks.map((link) => (
                   <Link
+                    rel="canonical"
                     key={link.link}
                     href={link.link}
                     className={cn(
@@ -86,7 +86,6 @@ const MobileHeader = () => {
                 <Separator className="!my-2" />
 
                 {/* user retated options here */}
-                
               </ul>
             </SheetDescription>
           </SheetHeader>

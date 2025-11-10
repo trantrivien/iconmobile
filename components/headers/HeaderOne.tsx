@@ -44,7 +44,12 @@ const HeaderOne = () => {
         <div className="lg:flex items-center gap-6   ">
           <div className="lg:flex items-center hidden gap-6">
             {navlinks.map((link: any) => (
-              <Link key={link.link} className=" text-lg font-medium" href={link.link}>
+              <Link
+                rel="canonical"
+                key={link.link}
+                className=" text-lg font-medium"
+                href={link.link}
+              >
                 {link.label}
               </Link>
             ))}
