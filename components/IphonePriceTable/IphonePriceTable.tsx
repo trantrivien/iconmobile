@@ -17,7 +17,7 @@ export default function IphonePriceTable({data , productId, sheetTitle}:IphonePr
   const [loading, setIsloading] = useState(true);
 
   const [rows, setRows] = useState<Cell[][]>([]);
-console.log(data)
+
   if (!data) return <></>;
 
   useEffect(() => {
@@ -27,42 +27,55 @@ console.log(data)
        
 
         const rowData = data?.sheets?.[0]?.data[0]?.rowData;
-        const parsed: Cell[][] = rowData?.map((row: any) =>
-          (row.values || [])?.map((cell: any) => {
-            const text = cell.formattedValue || "";
-            const fmt = cell.effectiveFormat || {};
-            const textFmt = fmt.textFormat || {};
-            const bg = fmt.backgroundColor || {};
-            const fg = textFmt.foregroundColor || {};
-
-            const style: React.CSSProperties = {
-              backgroundColor:
-                bg.red !== undefined
-                  ? `rgba(${(bg.red || 0) * 255}, ${(bg.green || 0) * 255}, ${
-                      (bg.blue || 0) * 255
-                    }, ${bg.alpha ?? 1})`
-                  : undefined,
-              color:
-                fg.red !== undefined
-                  ? `rgba(${(fg.red || 0) * 255}, ${(fg.green || 0) * 255}, ${
-                      (fg.blue || 0) * 255
-                    }, ${fg.alpha ?? 1})`
-                  : undefined,
-              fontWeight: textFmt.bold ? "bold" : "normal",
-              fontStyle: textFmt.italic ? "italic" : "normal",
-              fontSize: textFmt.fontSize ? `${textFmt.fontSize}px` : "14px",
-              textDecoration: textFmt.strikethrough
-                ? "line-through"
-                : textFmt.underline
-                ? "underline"
-                : "none",
-              padding: "6px 12px",
-              border: "1px solid #ddd",
-            };
-
-            return { text, style };
-          })
-        );
+        const parsed: Cell[][] = (rowData || [])
+        .map((row: any) => {
+          const cleanRow = (row.values || [])
+            .map((cell: any) => {
+              if (!cell) return null;  // ⭐ bỏ cell null ngay từ đầu
+      
+              const rawText = cell.formattedValue ?? "";
+              const trimmedText = rawText.trim();
+      
+              if (!trimmedText) return null; // ⭐ bỏ cell rỗng
+      
+              const fmt = cell.effectiveFormat || {};
+              const textFmt = fmt.textFormat || {};
+              const bg = fmt.backgroundColor || {};
+              const fg = textFmt.foregroundColor || {};
+      
+              const style: React.CSSProperties = {
+                backgroundColor:
+                  bg.red !== undefined
+                    ? `rgba(${(bg.red || 0) * 255}, ${(bg.green || 0) * 255}, ${
+                        (bg.blue || 0) * 255
+                      }, ${bg.alpha ?? 1})`
+                    : undefined,
+                color:
+                  fg.red !== undefined
+                    ? `rgba(${(fg.red || 0) * 255}, ${(fg.green || 0) * 255}, ${
+                        (fg.blue || 0) * 255
+                      }, ${fg.alpha ?? 1})`
+                    : undefined,
+                fontWeight: textFmt.bold ? "bold" : "normal",
+                fontStyle: textFmt.italic ? "italic" : "normal",
+                fontSize: textFmt.fontSize ? `${textFmt.fontSize}px` : "14px",
+                textDecoration: textFmt.strikethrough
+                  ? "line-through"
+                  : textFmt.underline
+                  ? "underline"
+                  : "none",
+                padding: "6px 12px",
+                border: "1px solid #ddd",
+              };
+      
+              return { text: trimmedText, style };
+            })
+            .filter((cell:any): cell is Cell => cell !== null);
+      
+          return cleanRow; 
+        })
+        .filter((row: Cell[]) => row.length > 0);
+      
 
         setRows(parsed);
         setIsloading(false);
@@ -86,23 +99,22 @@ console.log(data)
 
   return (
     <div className="p-6">
-      {/* <div className="my-2">
-        <BreadcrumbComponent links={["/cua-hang",params.productId]} pageText={sheetTitle ?? ''} />
-      </div> */}
       <h2 className="text-2xl font-bold mb-4 text-center">{`📱 Báo giá ${sheetTitle} tại iConMobile Ngày ${formattedDate}`}</h2>
-      <table className="border-collapse w-full text-center max-w-screen-xl m-auto">
+      <div className="w-full overflow-x-auto">
+      <table className="price-table border-collapse w-full text-center max-w-screen-xl m-auto">
         <tbody>
           {rows?.map((row, i) => (
-            <tr key={i}>
+            <tr key={i} className="">
               {row.map((cell, j) => (
-                <td key={j} style={cell.style}>
-                  {cell.text}
+                <td key={j}>
+                  {cell?.text}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

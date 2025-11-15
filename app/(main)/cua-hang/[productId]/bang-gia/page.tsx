@@ -1,6 +1,7 @@
 import IphonePriceTable from "@/components/IphonePriceTable/IphonePriceTable";
 import BenefitsSection from "@/components/others/BenefitSection";
 import BreadcrumbComponent from "@/components/others/Breadcrumb";
+import { getPriceData } from "@/lib/server/googleSheets";
 import { getSheetIDBySlug } from "@/lib/utils";
 import { Metadata } from "next";
 import React from "react";
@@ -74,22 +75,23 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const productId = params.productId;
-  const sheetTitle = searchParams.iphone;
+  const sheetTitleParam = searchParams.iphone;
+  const sheetTitle =
+    typeof sheetTitleParam === "string" ? sheetTitleParam : "";
   const range = "A10:E100";
 
   const sheetId = getSheetIDBySlug(productId);
 
-  const API_KEY = process.env.GOOGLE_API_KEY;
-  const url =
-    `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?` +
-    `includeGridData=true&` +
-    `ranges=${encodeURIComponent(`${sheetTitle}!${range}`)}&` +
-    `key=${API_KEY}`;
-  const res = await fetch(url);
-  const data = await res.json();
+  if (!sheetId || !sheetTitle) {
+    return null;
+  }
+
+  const data = await getPriceData(sheetId, sheetTitle, range);
   return (
     <div>
+      <div className="md:block hidden">
       <BenefitsSection textCenter={true} />
+      </div>
       <IphonePriceTable
         data={data}
         productId={productId}

@@ -8,25 +8,25 @@ import { parseConfig, ProductConfig } from "@/lib/parseData";
 async function fetchRange(
   sheetTitle: string,
   a1Range: string,
-  sheetId: string,
-  apiKey: string
+  sheetId: string
 ): Promise<string[][]> {
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(
-    `${sheetTitle}!${a1Range}`
-  )}?majorDimension=ROWS&key=${apiKey}`;
-  const res = await fetch(url);
+  const params = new URLSearchParams({
+    sheetId,
+    sheetTitle,
+    range: a1Range,
+  });
+  const res = await fetch(`/api/google-sheets/range?${params.toString()}`);
   if (!res.ok) throw new Error("Failed to load range");
   const data = await res.json();
-  return (data.values ?? []) as string[][];
+  return (data?.values ?? []) as string[][];
 }
 
 type IProductProps = {
   phone: string;
   slug?: string;
-  apiKey: string;
   sheetId: string;
 };
-function Product({ phone, slug, apiKey, sheetId }: IProductProps) {
+function Product({ phone, slug, sheetId }: IProductProps) {
   const [currentVariant, setCurrentVariant] = useState<{
     image: string;
     color: string;
@@ -37,7 +37,7 @@ function Product({ phone, slug, apiKey, sheetId }: IProductProps) {
     if (!phone) return;
     (async () => {
       try {
-        const values = await fetchRange(phone, "H1:Z4", sheetId ?? "", apiKey);
+        const values = await fetchRange(phone, "H1:Z4", sheetId ?? "");
         const parsed = parseConfig(values);
         setCurrentVariant({
           image: parsed?.variants[0]?.image ?? "",
@@ -48,7 +48,7 @@ function Product({ phone, slug, apiKey, sheetId }: IProductProps) {
         console.log(e.message ?? "Load config failed");
       }
     })();
-  }, []);
+  }, [phone, sheetId]);
 
   return (
     <Link

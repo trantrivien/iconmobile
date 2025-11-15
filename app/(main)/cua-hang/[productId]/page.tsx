@@ -1,6 +1,7 @@
 import BreadcrumbComponent from "@/components/others/Breadcrumb";
 import Product from "@/components/product/Product";
 import { productsData } from "@/data/products/productsData";
+import { getSheetTitles } from "@/lib/server/googleSheets";
 import { getSheetIDBySlug } from "@/lib/utils";
 import { Metadata } from "next";
 
@@ -76,18 +77,6 @@ type ProductConfig = {
   variants: { color: string; image?: string }[];
 };
 
-const API_KEY = process.env.GOOGLE_API_KEY;
-
-async function fetchSheetTitles(sheetId: string): Promise<string[]> {
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?fields=sheets.properties.title&key=${API_KEY}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error("Failed to load sheet titles");
-  const data = await res.json();
-  return (data.sheets ?? []).map((s: any) => s.properties.title as string);
-}
-
-
-
 const ProductIdPage = async ({ params }: ProductIdPageProps) => {
   const sheetId = getSheetIDBySlug(params?.productId);
   const product = productsData.find(
@@ -96,7 +85,7 @@ const ProductIdPage = async ({ params }: ProductIdPageProps) => {
 
   if (!sheetId) return <></>;
 
-  const listIphone = await fetchSheetTitles(sheetId ?? "");
+  const listIphone = await getSheetTitles(sheetId ?? "");
   return (
     <div className="max-w-screen-xl mx-auto p-4 md:p-8 flex flex-col items-start gap-2 min-h-screen">
       <div className="my-2">
@@ -109,7 +98,6 @@ const ProductIdPage = async ({ params }: ProductIdPageProps) => {
             key={idx}
             phone={phone}
             slug={product?.slug}
-            apiKey={API_KEY as string}
             sheetId={sheetId}
           />
         ))}

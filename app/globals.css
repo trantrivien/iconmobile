@@ -163,3 +163,24 @@ body {
     display: none;
   }
 }
+
+
+
+.price-table{
+  tbody{
+    tr:first-child{
+      @apply !bg-[#FFE599];
+      td{
+        @apply md:px-2 md:py-3 md:font-bold md:text-lg px-1 py-2 font-semibold text-[14px] border border-gray-200;
+        
+      }
+    }
+    tr:not(:first-child){
+      @apply even:bg-white odd:bg-gray-300;
+      td{
+        @apply md:px-2 md:py-3 md:font-semibold md:text-lg px-1 py-2 font-medium text-[14px] border border-gray-200;
+      }
+    }
+  }
+  
+}
