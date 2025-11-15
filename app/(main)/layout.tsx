@@ -4,7 +4,6 @@ import ScrollToTop from "@/components/others/ScrollToTop";
 import { Toaster } from "sonner";
 import { Metadata } from "next";
 
-
 export const metadata: Metadata = {
   title: "iConMobile - Chuyên bán iPhone",
   description:
@@ -74,12 +73,14 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-      <HeaderOne />
-      {children}
+    <div className=" flex flex-col justify-between h-screen">
+      <div>
+        <HeaderOne />
+        {children}
+      </div>
       <Footer />
       <ScrollToTop />
-      <Toaster position="top-right" duration={2000}/>
+      <Toaster position="top-right" duration={2000} />
     </div>
   );
 }
